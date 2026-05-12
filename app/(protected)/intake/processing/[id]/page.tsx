@@ -75,7 +75,7 @@ export default function ProcessingPage() {
     }
   }, [])
 
-  console.log(vehicle?.status);
+
   
 
   // ── Helper — populate store and navigate ───────────────
