@@ -22,6 +22,7 @@ const BottomCTAsection = () => {
           />
 
           <CustomCta
+            href="/login"
             label="Sell your car    →"
             className="py-5 w-fit mb-6 text-white"
           />

@@ -36,7 +36,7 @@ export default function ModelCard() {
   const [location, setLocation] = useState("Lagos");
   const [offer, setOffer] = useState(0);
 
-  // Editable pricing logic
+
   const calculateEstimate = useMemo(() => {
     return (
       currentMake: string,
@@ -45,7 +45,7 @@ export default function ModelCard() {
       currentCondition: string,
       currentLocation: string,
     ) => {
-      // 1. Base Prices Dictionary
+
       const basePrices: Record<
         string,
         Record<string, Record<string, number>>
@@ -62,7 +62,7 @@ export default function ModelCard() {
       let estimatedPrice =
         basePrices[currentMake]?.[currentModel]?.[currentYear] || 0;
 
-      // 2. Condition Modifiers
+  
       const conditionStr = currentCondition.toLowerCase();
       let conditionMultiplier = 1.0;
 
@@ -75,7 +75,7 @@ export default function ModelCard() {
         conditionStr.includes("dent") ||
         conditionStr.includes("scratch")
       ) {
-        conditionMultiplier = 0.97; // Adjusts 5,000,000 to exactly 4,850,000
+        conditionMultiplier = 0.97; 
       } else if (
         conditionStr.includes("bad") ||
         conditionStr.includes("poor")
@@ -83,7 +83,7 @@ export default function ModelCard() {
         conditionMultiplier = 0.8;
       }
 
-      // 3. Location Modifiers
+
       const locationModifiers: Record<string, number> = {
         Lagos: 1.0,
         Abuja: 1.05,
@@ -96,13 +96,13 @@ export default function ModelCard() {
     };
   }, []);
 
-  // Update offer whenever dependencies change
+
   useEffect(() => {
     const newOffer = calculateEstimate(make, model, year, condition, location);
     setOffer(newOffer);
   }, [make, model, year, condition, location, calculateEstimate]);
 
-  // Format currency
+
   const formattedOffer = new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
@@ -210,6 +210,7 @@ export default function ModelCard() {
         </div>
 
         <CustomCta
+          href="/login"
           label="Accept & Get Full Offer →"
           className="w-full text-white mt-3 "
         />

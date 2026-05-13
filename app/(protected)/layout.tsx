@@ -35,7 +35,6 @@ export default function ProtectedLayout({
     <div className="fixed inset-0 flex justify-center bg-[#E7E1D8]">
       {/* Phone frame */}
       <div className="relative flex h-[100dvh] w-full max-w-[448px] flex-col bg-[#FAF8F5] shadow-2xl sm:h-[95dvh] sm:my-auto sm:rounded-[2.5rem] sm:border-[8px] sm:border-[#171D17] overflow-hidden">
-        
         {/* Status bar area */}
         <div className="shrink-0 bg-[#FAF8F5] pt-safe-top">
           <nav className="flex items-center justify-between px-5 py-3">

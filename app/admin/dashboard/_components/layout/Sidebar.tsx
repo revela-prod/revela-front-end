@@ -55,11 +55,10 @@ const Sidebar = () => {
     <aside
       className={cn(
         "flex flex-col bg-white border-r border-border transition-all duration-300 shrink-0",
-        collapsed ? "w-16" : "w-[216px]"
+        collapsed ? "w-16" : "w-[216px]",
       )}
     >
-      {/* Logo */}
-      <div className="flex items-center justify-between px-4 py-6 border-b border-border">
+      <div className="flex items-center justify-between px-4 py-[22px] border-b border-border">
         {!collapsed && (
           <div className="flex items-center gap-2">
             <img
@@ -80,7 +79,6 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {/* Nav */}
       <nav className="flex-1 overflow-y-auto py-4 space-y-6 px-2">
         {NAV_ITEMS.map((section) => (
           <div key={section.section}>
@@ -114,7 +112,6 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      {/* User */}
       <ProfileBar collapsed={collapsed} />
     </aside>
   );

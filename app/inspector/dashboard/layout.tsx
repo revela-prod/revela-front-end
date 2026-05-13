@@ -14,7 +14,6 @@ export default function InspectorLayout({
     <div className="fixed inset-0 flex justify-center bg-[#E7E1D8]">
       {/* Phone frame */}
       <div className="relative flex h-[100dvh] w-full max-w-[448px] flex-col bg-[#FAF8F5] shadow-2xl sm:my-auto sm:h-[95dvh] sm:rounded-[2.5rem] sm:border-[8px] sm:border-[#171D17] overflow-hidden">
-        
         {/* Header */}
         <div className="shrink-0 bg-white pt-safe-top">
           <div className="flex items-center justify-between border-b border-[#E7E1D8] px-5 py-4">
