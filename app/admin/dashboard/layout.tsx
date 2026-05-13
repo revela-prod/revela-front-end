@@ -1,22 +1,18 @@
+
 "use client";
-import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+
 import Sidebar from "./_components/layout/Sidebar";
 import MainContent from "./_components/layout/MainContent";
 
-export default function dashboardLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-
   return (
-    <div className="flex h-screen sbg-[#F7F2EB] overflow-hidden font-cabinet ">
+    <div className="flex h-screen overflow-hidden bg-[#FAF8F5] font-cabinet">
       <Sidebar />
-      <MainContent>
-        <main className="flex-1 overflow-y-auto">{children}</main>
-      </MainContent>
+      <MainContent>{children}</MainContent>
     </div>
   );
 }
