@@ -1,4 +1,5 @@
 export const BANK_CODES: Record<string, string> = {
+  "Test Bank": "001",
   "Access Bank": "044",
   "Citibank": "023",
   "Ecobank": "050",

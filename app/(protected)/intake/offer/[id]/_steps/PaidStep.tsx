@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useOfferStore } from "@/features/offer/store/useOfferStore"
 import { Banknote, LayoutDashboard, CheckCircle2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 function formatNaira(amount: number | null) {
   if (!amount) return "—"
@@ -16,7 +17,7 @@ export default function PaidStep() {
 
   function handleDone() {
     reset()
-    router.push("/home")
+    router.replace("/home")
   }
 
   // Mask account number — show last 4 digits only
@@ -88,13 +89,13 @@ export default function PaidStep() {
         </p>
       </div>
 
-      <button
+      <Button
         onClick={handleDone}
-        className="w-full flex items-center justify-center gap-2 bg-[#171D17] text-white font-bold py-4 rounded-xl hover:opacity-90 transition-opacity"
+        className="w-full flex items-center justify-center gap-2  text-white font-bold py-4 rounded-xl hover:opacity-90 transition-opacity"
       >
         <LayoutDashboard size={16} />
         Back to Dashboard
-      </button>
+      </Button>
     </div>
   )
 }

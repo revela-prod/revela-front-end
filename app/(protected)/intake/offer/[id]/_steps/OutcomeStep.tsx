@@ -31,7 +31,7 @@ export default function OutcomeStep() {
           isAccepted ? "bg-green-500" : "bg-red-500"
         }`}>
           {isAccepted ? (
-            <CheckCircle2 size={44} color="green" />
+            <CheckCircle2 size={44} color="white" />
           ) : (
             <XCircle size={44} color="black" />
           )}
