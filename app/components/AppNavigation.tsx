@@ -14,6 +14,20 @@ const links = [
   { label: "About Revela", id: "about" },
 ];
 
+export const scrollToSection = (id: string) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const y = el.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
+
+  window.scrollTo({
+    top: y,
+    behavior: "smooth",
+  });
+
+  history.replaceState(null, "", " ");
+};
+
 export default function AppNavigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -59,20 +73,6 @@ export default function AppNavigation() {
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    const y = el.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth",
-    });
-
-    history.replaceState(null, "", " ");
-  };
 
   return (
     <>

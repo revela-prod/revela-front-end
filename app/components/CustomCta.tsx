@@ -3,17 +3,20 @@ import Link from "next/link";
 type AppNavigationCtaProps = {
   href?: string;
   label?: string;
+  onclick?: () => void 
   className?: string;
 };
 
 const CustomCta = ({
   href= "/",
   label,
+  onclick,
   className,
 }: AppNavigationCtaProps) => {
   return (
     <Link
       href={href}
+      onClick={onclick}
       className={`
         ${className}
         inline-flex items-center justify-center

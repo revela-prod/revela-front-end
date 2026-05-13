@@ -1,42 +1,46 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import { useMutation } from "@apollo/client/react"
-import { LoginDocument } from "@/graphql/generated/graphql"
-import { setAuthCookies } from "@/lib/auth/token"
-import { useRouter } from "next/navigation"
-import { appToast } from "@/lib/toast"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useMutation } from "@apollo/client/react";
+import { LoginDocument } from "@/graphql/generated/graphql";
+import { setAuthCookies } from "@/lib/auth/token";
+import { useRouter } from "next/navigation";
+import { appToast } from "@/lib/toast";
 
 const schema = z.object({
   email: z.string().email("Enter a valid email"),
   password: z.string().min(1, "Password is required"),
-})
+});
 
-type Values = z.infer<typeof schema>
+type Values = z.infer<typeof schema>;
 
 export default function page() {
-  const router = useRouter()
-  const [login, { loading }] = useMutation(LoginDocument)
+  const router = useRouter();
+  const [login, { loading }] = useMutation(LoginDocument);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<Values>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Values>({
     resolver: zodResolver(schema),
-  })
+  });
 
   async function onSubmit(values: Values) {
     try {
       const { data } = await login({
         variables: { input: values },
-      })
+      });
 
       if (data?.login) {
         if (data.login.role !== "ADMIN") {
           appToast.error({
             title: "Access denied",
             description: "This portal is for admins only",
-          })
-          return
+          });
+          return;
         }
 
         await setAuthCookies(data.login.accessToken, {
@@ -44,18 +48,17 @@ export default function page() {
           email: data.login.email,
           fullName: data.login.fullName,
           role: data.login.role,
-        })
+        });
 
-        router.push("/dashboard")
+        router.push("/dashboard");
       }
     } catch (err: any) {
       appToast.error({
         title: "Login failed",
         description: err?.graphQLErrors?.[0]?.message ?? "Invalid credentials",
-      })
+      });
 
       // console.log(err);
-      
     }
   }
 
@@ -64,7 +67,11 @@ export default function page() {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          <img src="/icons/primary-logo.svg" alt="Revela" className="h-8 w-auto" />
+          <img
+            src="/icons/primary-logo.svg"
+            alt="Revela"
+            className="h-8 w-auto"
+          />
           <span className="text-xs font-bold bg-[#E8A020] text-white px-2 py-0.5 rounded">
             ADMIN
           </span>
@@ -91,7 +98,9 @@ export default function page() {
                 className="w-full px-3 py-2.5 text-sm border border-border rounded-lg bg-transparent outline-none focus:ring-2 focus:ring-ring"
               />
               {errors.email && (
-                <p className="text-xs text-destructive">{errors.email.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
@@ -106,7 +115,9 @@ export default function page() {
                 className="w-full px-3 py-2.5 text-sm border border-border rounded-lg bg-transparent outline-none focus:ring-2 focus:ring-ring"
               />
               {errors.password && (
-                <p className="text-xs text-destructive">{errors.password.message}</p>
+                <p className="text-xs text-destructive">
+                  {errors.password.message}
+                </p>
               )}
             </div>
 
@@ -125,5 +136,5 @@ export default function page() {
         </p>
       </div>
     </div>
-  )
+  );
 }

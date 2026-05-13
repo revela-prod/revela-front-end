@@ -6,6 +6,7 @@ import FloatingStatCard from "../components/FloatingStatCard";
 import HeroMainCard from "../components/HeroMainCard";
 import OrbitCanvas from "../components/OrbitCanvas";
 import ScrollIndicator from "@/app/components/ScrollIndicator";
+import { scrollToSection } from "@/app/components/AppNavigation";
 
 const container = {
   hidden: {},
@@ -79,12 +80,14 @@ export default function HeroSection() {
           >
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
               <CustomCta
+                href="/login"
                 label="Sell your car →"
                 className="py-5 px-10 text-white"
               />
             </motion.div>
 
             <CustomCta
+              onclick={() => scrollToSection("how-it-works")}
               label="See how it works →"
               className="bg-transparent pl-0 md:pl-6 font-cabinet font-medium normal-case shadow-none text-[#71717A] hover:bg-transparent"
             />
@@ -98,6 +101,7 @@ export default function HeroSection() {
           className="relative flex items-center justify-center mt-0 lg:mt-10"
         >
           <HeroMainCard />
+
           <FloatingStatCard
             title="Cars Purchased"
             value="1,300"

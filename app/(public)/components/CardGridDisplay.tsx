@@ -6,6 +6,7 @@ import { CreditCard, Repeat } from "lucide-react";
 import GridFeatureCard from "./GridFeatureCard";
 import GridStatCard from "./GridStatCard";
 import BarFeatureCard from "./BarFeatureCard";
+import Link from "next/link";
 
 const CardGridDisplay = () => {
   return (
@@ -72,6 +73,7 @@ const CardGridDisplay = () => {
         />
 
         <motion.div
+ 
           className=" relative overflow-hidden h-56.25 flex flex-col justify-between p-8 rounded-[18px] cursor-none bg-(--gold) "
           whileHover={{ y: -4 }}
           transition={{ duration: 0.3 }}
@@ -89,7 +91,9 @@ const CardGridDisplay = () => {
             whileHover={{ x: 3, y: -3 }}
             transition={{ duration: 0.25 }}
           >
-            <svg
+     
+            <Link href="/login">
+                   <svg
               width="18"
               height="18"
               viewBox="0 0 24 24"
@@ -99,6 +103,8 @@ const CardGridDisplay = () => {
             >
               <path d="M7 17L17 7M17 7H7M17 7v10" />
             </svg>
+            
+            </Link>
           </motion.div>
         </motion.div>
       </div>

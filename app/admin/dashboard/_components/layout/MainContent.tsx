@@ -1,3 +1,4 @@
+// MainContent.tsx
 import { Bell, Download, Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

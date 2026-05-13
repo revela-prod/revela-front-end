@@ -22,7 +22,7 @@ export function useBankDetails() {
     },
   });
 
-  // Called when account number hits 10 digits
+
   async function handleAccountNumberChange(value: string) {
     setAccountName(null);
     const selectedBank = form.getValues("bankName");
