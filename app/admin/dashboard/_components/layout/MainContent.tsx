@@ -11,8 +11,8 @@ const MainContent = ({ children }: { children: ReactNode }) => {
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
     .join(" / ");
   return (
-   
- <div className="flex min-w-0 flex-1 flex-col overflow-hidden bg-[#FAF8F5]">
+    <div className="flex-1 flex flex-col  overflow-scroll min-w-7xl">
+
       <header className="py-5 bg-white border-b border-border flex items-center justify-between px-6 shrink-0">
       
         <p className="text-sm text-muted-foreground">{breadcrumb}</p>
