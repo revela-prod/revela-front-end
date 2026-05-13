@@ -101,7 +101,7 @@ export default function SettingsPage() {
 
   return (
     <div className="mx-auto w-full max-w-3xl space-y-8 py-6">
-      {/* Header */}
+      
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6A6A6A]">
           Administration
@@ -114,8 +114,8 @@ export default function SettingsPage() {
         </p>
       </div>
 
-      {/* Invite Section */}
-      <div className="rounded-3xl border border-[#E7E1D8] bg-white p-6 shadow-sm">
+      
+      <div className="rounded-3xl border border-[#E7E1D8] bg-white p-6 ">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF7E4]">
@@ -139,7 +139,7 @@ export default function SettingsPage() {
           </button>
         </div>
 
-        {/* Invite form */}
+        
         {showForm && (
           <div className="mt-5 space-y-4 rounded-2xl border border-[#E8A020]/20 bg-[#FFF7E4]/30 p-5">
             <div className="flex items-center justify-between">
@@ -231,8 +231,8 @@ export default function SettingsPage() {
         )}
       </div>
 
-      {/* Inspectors Directory */}
-      <div className="rounded-3xl border border-[#E7E1D8] bg-white p-6 shadow-sm">
+      
+      <div className="rounded-3xl border border-[#E7E1D8] bg-white p-6 ">
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF7E4]">
@@ -268,7 +268,7 @@ export default function SettingsPage() {
           </div>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-[#E7E1D8]">
-            {/* Table Header */}
+            
             <div className="hidden grid-cols-12 gap-4 bg-[#FAF8F5] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-[#6A6A6A] sm:grid">
               <div className="col-span-4">Inspector</div>
               <div className="col-span-3">Contact</div>
@@ -277,14 +277,14 @@ export default function SettingsPage() {
               <div className="col-span-1 text-right">Action</div>
             </div>
 
-            {/* Table Rows */}
+            
             <div className="divide-y divide-[#F7F2EB]">
               {inspectors.map((inspector) => (
                 <div
                   key={inspector.id}
                   className="grid grid-cols-1 items-center gap-3 px-5 py-4 transition-colors hover:bg-[#FAF8F5] sm:grid-cols-12 sm:gap-4"
                 >
-                  {/* Name */}
+                  
                   <div className="col-span-4 flex items-center gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFF7E4]">
                       <span className="text-xs font-bold text-[#E8A020]">
@@ -304,7 +304,7 @@ export default function SettingsPage() {
                     </div>
                   </div>
 
-                  {/* Phone */}
+                  
                   <div className="col-span-3 flex items-center gap-2">
                     <Phone size={12} className="text-[#BFC9C3]" />
                     <span className="text-sm text-[#6A6A6A]">
@@ -312,7 +312,7 @@ export default function SettingsPage() {
                     </span>
                   </div>
 
-                  {/* Region */}
+                  
                   <div className="col-span-2 flex items-center gap-2">
                     <MapPin size={12} className="text-[#BFC9C3]" />
                     <span className="text-sm text-[#6A6A6A]">
@@ -320,7 +320,7 @@ export default function SettingsPage() {
                     </span>
                   </div>
 
-                  {/* Status */}
+                  
                   <div className="col-span-2">
                     {inspector.isAvailable ? (
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-[10px] font-bold text-green-600">
@@ -335,7 +335,7 @@ export default function SettingsPage() {
                     )}
                   </div>
 
-                  {/* Action */}
+                  
                   <div className="col-span-1 flex justify-end">
                     <button className="rounded-lg p-1.5 text-[#BFC9C3] transition-colors hover:bg-[#F7F2EB] hover:text-[#171D17]">
                       <Mail size={14} />
