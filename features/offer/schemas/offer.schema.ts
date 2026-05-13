@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 export const NIGERIAN_BANKS = [
+  "Test Bank",
   "Access Bank",
   "Citibank",
   "Ecobank",

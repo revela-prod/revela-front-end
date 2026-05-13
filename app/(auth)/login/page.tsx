@@ -4,6 +4,7 @@ import { FieldGroup } from "@/components/ui/field";
 import { TextField } from "@/components/ui/textfield";
 import { useLoginForm } from "@/features/auth/hooks/useLoginForm";
 import { AtSign, Eye, EyeClosed, LogIn } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -51,14 +52,20 @@ export default function LoginPage() {
             error={errors.password?.message}
             {...register("password")}
           />
-          
         </FieldGroup>
-        <span className="w-full flex justify-end pr-4 uppercase font-normal text-[12px] tracking-[1.2px] text-[#3A3A3A]  mb-10">
+        <span className="w-full flex justify-end pr-4 mt-3 uppercase font-normal text-[12px] tracking-[1.2px] text-[#3A3A3A]  mb-10">
           {" "}
-          <span className="border-b">Forgot Password?</span>
+          <div className="flex items-center justify-end">
+            <Link
+              href="/forgot-password"
+              className="text-xs text-[#E8A020] font-bold hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
         </span>
         <Button loading={isLoading} className="text-white w-full">
-          Log In  <LogIn />
+          Log In <LogIn />
         </Button>
       </form>
 

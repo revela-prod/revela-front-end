@@ -188,7 +188,7 @@ export default function OfferStep() {
             </div>
 
             {/* Content */}
-            <div className="mt-5 text-center">
+            <div className="mt-5 text-center font-cabinet">
               <h2 className="text-xl font-extrabold text-[#171D17]">
                 {confirmAction === "accept"
                   ? "Accept this offer?"
@@ -203,7 +203,7 @@ export default function OfferStep() {
 
             {/* Reject options */}
             {confirmAction === "reject" && (
-              <div className="mt-5 space-y-4 rounded-2xl border border-[#E7E1D8] bg-[#FAF8F5] p-4">
+              <div className="mt-5 space-y-4 rounded-2xl border border-[#E7E1D8] bg-[#FAF8F5] p-4 font-cabinet">
                 {/* Checkbox */}
                 <button
                   type="button"
@@ -289,7 +289,7 @@ export default function OfferStep() {
             </div>
 
             {/* Actions */}
-            <div className="mt-6 flex gap-3">
+            <div className="mt-6 flex gap-3 font-cabinet">
               <button
                 onClick={handleCloseModal}
                 disabled={isLoading}

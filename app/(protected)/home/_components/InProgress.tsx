@@ -5,6 +5,7 @@ import { useMemo } from "react"
 import { useQuery } from "@apollo/client/react"
 import { GetVehiclesByUserDocument } from "@/graphql/generated/graphql"
 import { MoreVertical, Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const STATUS_COLORS: Record<string, string> = {
   SUBMITTED: "text-blue-600",
@@ -94,8 +95,12 @@ function VehicleCard({
   const statusLabel = STATUS_LABELS[vehicle.status] ?? vehicle.status
   const image = vehicle.imageUrls?.[0]?.imageUrl
 
+
+  const router = useRouter()
   return (
-    <div className="rounded-xl border border-[#E8A02040] bg-card p-5">
+    <div
+    onClick={()=> router.push("/inventory")}    
+    className="rounded-xl border border-[#E8A02040] bg-card p-5">
       <div className="flex items-start gap-3">
         {/* Car image */}
         <div className="w-16 h-16 rounded-lg bg-[#FFF7E4] shrink-0 flex items-center justify-center overflow-hidden">

@@ -34,6 +34,8 @@ type Documents = {
     "mutation RefreshToken {\n  refresh\n}": typeof types.RefreshTokenDocument,
     "mutation verifyMagicLink($token: String!) {\n  verifyMagicLink(token: $token) {\n    accessToken\n    id\n    email\n    fullName\n    role\n  }\n}": typeof types.VerifyMagicLinkDocument,
     "mutation verifyOtp($input: VerifyOtpInput!) {\n  verifyOtp(input: $input)\n}": typeof types.VerifyOtpDocument,
+    "mutation ForgotPassword($email: String!) {\n  forgotPassword(email: $email)\n}": typeof types.ForgotPasswordDocument,
+    "mutation ResetPassword($token: String!, $newPassword: String!) {\n  resetPassword(token: $token, newPassword: $newPassword)\n}": typeof types.ResetPasswordDocument,
     "mutation AcceptOffer($id: String!) {\n  acceptOffer(id: $id) {\n    id\n    status\n  }\n}": typeof types.AcceptOfferDocument,
     "query GetUserDashboard {\n  getUserDashboard {\n    totalVehicles\n    activeVehicles\n    totalPayout\n  }\n}": typeof types.GetUserDashboardDocument,
     "mutation RejectOffer($id: String!, $input: RejectOfferInputType) {\n  rejectOffer(id: $id, input: $input) {\n    id\n    status\n    offer\n  }\n}": typeof types.RejectOfferDocument,
@@ -67,6 +69,8 @@ const documents: Documents = {
     "mutation RefreshToken {\n  refresh\n}": types.RefreshTokenDocument,
     "mutation verifyMagicLink($token: String!) {\n  verifyMagicLink(token: $token) {\n    accessToken\n    id\n    email\n    fullName\n    role\n  }\n}": types.VerifyMagicLinkDocument,
     "mutation verifyOtp($input: VerifyOtpInput!) {\n  verifyOtp(input: $input)\n}": types.VerifyOtpDocument,
+    "mutation ForgotPassword($email: String!) {\n  forgotPassword(email: $email)\n}": types.ForgotPasswordDocument,
+    "mutation ResetPassword($token: String!, $newPassword: String!) {\n  resetPassword(token: $token, newPassword: $newPassword)\n}": types.ResetPasswordDocument,
     "mutation AcceptOffer($id: String!) {\n  acceptOffer(id: $id) {\n    id\n    status\n  }\n}": types.AcceptOfferDocument,
     "query GetUserDashboard {\n  getUserDashboard {\n    totalVehicles\n    activeVehicles\n    totalPayout\n  }\n}": types.GetUserDashboardDocument,
     "mutation RejectOffer($id: String!, $input: RejectOfferInputType) {\n  rejectOffer(id: $id, input: $input) {\n    id\n    status\n    offer\n  }\n}": types.RejectOfferDocument,
@@ -174,6 +178,14 @@ export function graphql(source: "mutation verifyMagicLink($token: String!) {\n  
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation verifyOtp($input: VerifyOtpInput!) {\n  verifyOtp(input: $input)\n}"): (typeof documents)["mutation verifyOtp($input: VerifyOtpInput!) {\n  verifyOtp(input: $input)\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ForgotPassword($email: String!) {\n  forgotPassword(email: $email)\n}"): (typeof documents)["mutation ForgotPassword($email: String!) {\n  forgotPassword(email: $email)\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ResetPassword($token: String!, $newPassword: String!) {\n  resetPassword(token: $token, newPassword: $newPassword)\n}"): (typeof documents)["mutation ResetPassword($token: String!, $newPassword: String!) {\n  resetPassword(token: $token, newPassword: $newPassword)\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

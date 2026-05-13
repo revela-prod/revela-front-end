@@ -24,7 +24,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="mx-auto w-full py-6">
+    <div className="mx-auto w-full font-cabinet py-6">
       <div className="mb-6">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6A6A6A]">
           Profile

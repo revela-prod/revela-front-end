@@ -55,7 +55,7 @@ const Sidebar = () => {
     <aside
       className={cn(
         "flex flex-col bg-white border-r border-border transition-all duration-300 shrink-0",
-        collapsed ? "w-16" : "w-54",
+        collapsed ? "w-16" : "w-[216px]"
       )}
     >
       {/* Logo */}
