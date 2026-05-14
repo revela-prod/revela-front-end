@@ -1,112 +1,69 @@
+import { invalidateTokenCache } from "@/lib/apollo/client";
 
+let isRefreshing = false;
 
-// import { apolloClient, invalidateTokenCache } from "@/lib/apollo/client";
-// import { RefreshTokenDocument } from "@/graphql/generated/graphql";
-
-// let isRefreshing = false;
-
-// export async function refreshToken(): Promise<string | null> {
-//   if (isRefreshing) return null;
-
-//   try {
-//     isRefreshing = true;
-
-//     const tokenRes = await fetch("/api/auth/get-token");
-//     const { token } = await tokenRes.json();
-//     if (!token) return null;
-
-//     const { data } = await apolloClient.mutate({
-//       mutation: RefreshTokenDocument,
-//       fetchPolicy: "no-cache",
-//     });
-
-//     const newToken = data?.refresh;
-//     if (!newToken) return null;
-
-//     const userCookie = document.cookie
-//       .split("; ")
-//       .find((r) => r.startsWith("revela_user="))
-//       ?.split("=")[1];
-
-//     await fetch("/api/auth/set-token", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         accessToken: newToken,
-//         user: userCookie ? JSON.parse(decodeURIComponent(userCookie)) : {},
-//       }),
-//     });
-
-//     // After storing new token — invalidate so next request fetches fresh
-//     invalidateTokenCache();
-
-//     return newToken;
-//   } catch {
-//     return null;
-//   } finally {
-//     isRefreshing = false;
-//   }
-// }
-
-
-import { apolloClient, invalidateTokenCache } from "@/lib/apollo/client"
-import { RefreshTokenDocument } from "@/graphql/generated/graphql"
-
-let isRefreshing = false
-
-async function forceLogout() {
-  invalidateTokenCache()
-  await fetch("/api/auth/clear-token", { method: "POST" })
-  window.location.href = "/login"
+async function forceLogout(): Promise<void> {
+  invalidateTokenCache();
+  await fetch("/api/auth/clear-token", { method: "POST" });
+  window.location.href = "/login";
 }
 
 export async function refreshToken(): Promise<string | null> {
-  if (isRefreshing) return null
+  if (isRefreshing) return null;
+  isRefreshing = true;
 
   try {
-    isRefreshing = true
+    const tokenRes = await fetch("/api/auth/get-token");
+    const { token } = await tokenRes.json();
 
-    const tokenRes = await fetch("/api/auth/get-token")
-    const { token } = await tokenRes.json()
-
-    // No access token at all → already logged out
-    if (!token) return null
-
-    const { data, error } = await apolloClient.mutate({
-      mutation: RefreshTokenDocument,
-      fetchPolicy: "no-cache",
-    })
-
-    if (error?.message || !data?.refresh) {
-      // Refresh failed — session is dead, log out immediately
-      await forceLogout()
-      return null
+    if (!token) {
+      isRefreshing = false;
+      return null;
     }
 
-    const newToken = data.refresh
+    // Step 2 — call refresh directly via fetch, NOT apolloClient
+
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL!, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      credentials: "include", // sends refresh_token cookie from backend domain
+      body: JSON.stringify({
+        query: `mutation RefreshToken { refresh }`,
+      }),
+    });
+
+    const json = await res.json();
+    const newToken: string | null = json?.data?.refresh ?? null;
+    const hasError = json?.errors?.length > 0;
+
+    if (hasError || !newToken) {
+      console.warn("[Auth] Refresh failed — logging out", json?.errors);
+      await forceLogout();
+      return null;
+    }
 
     const userCookie = document.cookie
       .split("; ")
       .find((r) => r.startsWith("revela_user="))
-      ?.split("=")[1]
+      ?.split("=")[1];
+
+    const user = userCookie ? JSON.parse(decodeURIComponent(userCookie)) : {};
 
     await fetch("/api/auth/set-token", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        accessToken: newToken,
-        user: userCookie
-          ? JSON.parse(decodeURIComponent(userCookie))
-          : {},
-      }),
-    })
+      body: JSON.stringify({ accessToken: newToken, user }),
+    });
 
-    invalidateTokenCache()
-    return newToken
+    invalidateTokenCache();
+
+    return newToken;
   } catch {
-    // Network error — don't log out, might just be offline
-    return null
+    return null;
   } finally {
-    isRefreshing = false
+    isRefreshing = false;
   }
 }

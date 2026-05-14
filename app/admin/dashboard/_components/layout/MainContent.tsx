@@ -1,4 +1,4 @@
-// MainContent.tsx
+
 
 import { appToast } from "@/lib/toast";
 import { Bell, Download, Plus, Search } from "lucide-react";
@@ -27,7 +27,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
       <header className="flex shrink-0 items-center justify-between border-b border-[#E7E1D8] bg-white px-6 py-4">
         <p className="text-sm text-[#6A6A6A]">{breadcrumb}</p>
 
-        {/* Search */}
+      
         <div className="mx-6 hidden max-w-sm flex-1 md:block">
           <div className="flex items-center gap-2 rounded-xl bg-[#F7F2EB] px-3 py-2">
             <Search size={14} className="text-[#BFC9C3]" />
@@ -39,7 +39,7 @@ const MainContent = ({ children }: { children: ReactNode }) => {
           </div>
         </div>
 
-        {/* Actions */}
+
         <div className="flex items-center gap-3">
           <button
           onClick={comingFeatureComingSoon}

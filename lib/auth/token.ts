@@ -1,4 +1,5 @@
-import { clearTokenCache, invalidateTokenCache } from "@/lib/apollo/client"
+import { invalidateTokenCache } from "@/lib/apollo/client"
+
 export interface StoredUser {
   id: string
   email: string
@@ -6,27 +7,13 @@ export interface StoredUser {
   role: string
 }
 
-// export async function setAuthCookies(
-//   accessToken: string,
-//   user: StoredUser
-// ): Promise<void> {
-//   await fetch("/api/auth/set-token", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ accessToken, user }),
-//   })
-// }
-
-// export async function clearAuthCookies(): Promise<void> {
-//   await fetch("/api/auth/clear-token", { method: "POST" })
-// }
-
-
 export async function setAuthCookies(
   accessToken: string,
   user: StoredUser
 ): Promise<void> {
-  invalidateTokenCache() // ← full reset on new login
+
+  invalidateTokenCache()
+
   await fetch("/api/auth/set-token", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -34,9 +21,8 @@ export async function setAuthCookies(
   })
 }
 
-
 export async function clearAuthCookies(): Promise<void> {
-  invalidateTokenCache() // ← full reset on logout
+  invalidateTokenCache()
   await fetch("/api/auth/clear-token", { method: "POST" })
 }
 
