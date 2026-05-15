@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { scrollToSection } from "./AppNavigation";
 
-  const date = new Date ()
+const date = new Date();
 
-  const year = date.getFullYear()
+const year = date.getFullYear();
 
 const container = {
   hidden: { opacity: 0, y: 40 },
@@ -18,6 +19,13 @@ const container = {
     },
   },
 };
+
+const SectionLinks = [
+  { label: "How It Works", id: "how-it-works" },
+  { label: "What we buy", id: "what-we-buy" },
+  { label: "Pricing Guide", id: "model" },
+  { label: "About Us", id: "about" },
+];
 
 const item = {
   hidden: { opacity: 0, y: 30 },
@@ -34,19 +42,16 @@ export default function Footer() {
       className="bg-[#1A1208] text-[#FFFFFF8C] font-cabinet pt-20 pb-10 px-6 md:px-12 lg:px-20"
     >
       <div className="max-w-7xl mx-auto">
-        
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
-          
-          
           <motion.div variants={item} className="md:col-span-6 lg:col-span-5">
             <Link
               href="/"
               className="flex items-center gap-2 mb-5 text-[1.45rem] font-bold tracking-[-0.01em] text-(--ink)"
             >
               <img
-                src="/icons/primary-logo-dark.svg"
+                src="/icons/footer-logo.png"
                 alt="Revela"
-                className="h-7.5 sm:h-auto max-w-none"
+                className="h-[50px]"
               />
             </Link>
 
@@ -62,41 +67,50 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          
-          <motion.div variants={item} className="md:col-span-3 lg:col-span-3 lg:col-start-7">
+          <motion.div
+            variants={item}
+            className="md:col-span-3 lg:col-span-3 lg:col-start-7"
+          >
             <h3 className="text-sm font-bold tracking-widest uppercase mb-6">
               Company
             </h3>
 
             <ul className="flex flex-col gap-4 text-[15px]">
-              {["How It Works", "What We Buy", "Pricing Guide", "About Us"].map((link) => (
+              {SectionLinks.map((link) => (
                 <motion.li
-                  key={link}
+                  key={link.label}
                   whileHover={{ x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="#" className="hover:text-white transition-colors">
-                    {link}
-                  </a>
+                  <span
+                    onClick={() => scrollToSection(link.id)}
+                    className="hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </span>
                 </motion.li>
               ))}
             </ul>
           </motion.div>
 
-          
           <motion.div variants={item} className="md:col-span-3 lg:col-span-3">
             <h3 className="text-sm font-bold tracking-widest uppercase mb-6">
               Support
             </h3>
 
             <ul className="flex flex-col gap-4 text-[15px]">
-              {["Contact Us", "WhatsApp Support", "FAQs", "Privacy Policy"].map((link) => (
+              {["Contact Us", "WhatsApp Support"].map((link) => (
                 <motion.li
                   key={link}
                   whileHover={{ x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="https://wa.me/2348138422274?text=Hello%20Revela%20Support%2C%20I%20need%20assistance%20regarding%20my%20vehicle%20sale%20process."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors"
+                  >
                     {link}
                   </a>
                 </motion.li>
@@ -105,7 +119,6 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 0.2, scaleX: 1 }}
@@ -113,7 +126,6 @@ export default function Footer() {
           className="origin-left border-t border-[#F3F4F6] w-full mb-8"
         />
 
-        
         <motion.div
           variants={item}
           className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm"
@@ -122,7 +134,6 @@ export default function Footer() {
             © {year} REVELA AFRICA. ALL RIGHTS RESERVED.
           </p>
 
-          
           <div className="flex items-center gap-8 text-xs tracking-widest uppercase">
             {["Twitter", "Instagram", "LinkedIn"].map((s) => (
               <motion.a
@@ -137,16 +148,13 @@ export default function Footer() {
             ))}
           </div>
 
-          
           <div className="flex items-center gap-2">
             <motion.span
-              className="w-2 h-2 rounded-full bg-[#22C55E]"
+              className="w-1.5 h-1.5 rounded-full bg-[#22C55E]"
               animate={{ scale: [1, 1.4, 1], opacity: [1, 0.6, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
-            <span className="text-[13px]">
-              System Status: Operational
-            </span>
+            <span className="text-[13px]">System Status: Operational</span>
           </div>
         </motion.div>
       </div>
