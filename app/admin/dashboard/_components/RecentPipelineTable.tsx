@@ -24,7 +24,7 @@ export function RecentPipelineTable() {
       <div className="flex items-center justify-between p-5 border-b border-border">
         <h2 className="text-sm font-bold text-foreground">Recent Pipeline</h2>
         <button
-          onClick={() => router.push("/vehicles")}
+          onClick={() => router.push("/dashboard/vehicles")}
           className="text-xs text-[#E8A020] font-bold hover:underline"
         >
           View all →
@@ -95,7 +95,7 @@ export function RecentPipelineTable() {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        router.push(`/vehicles/${vehicle.id}`);
+                        router.push(`/dashboard/vehicles/${vehicle.id}`);
                       }}
                       className="text-xs font-bold text-[#E8A020] hover:underline"
                     >
