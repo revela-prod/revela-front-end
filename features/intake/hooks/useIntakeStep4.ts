@@ -105,7 +105,7 @@ async function onSubmit() {
       },
     })
 
-    // console.log("[Submit] Response:", data)
+
 
     if (data?.submitVehicle) {
       const vehicleId = data.submitVehicle.id
