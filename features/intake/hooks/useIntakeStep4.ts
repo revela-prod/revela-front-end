@@ -98,6 +98,9 @@ async function onSubmit() {
           structuralDamage: intakeData.structuralDamage!,
           serviceHistory: intakeData.serviceHistory!,
           imageUrls,
+          // infer false on both values as revela focuses mainly on scrap vehicles
+          canDrive:false,
+          canStart:false,
         },
       },
     })

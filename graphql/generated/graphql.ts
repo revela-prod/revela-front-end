@@ -327,6 +327,8 @@ export type StartAssessmentInput = {
 };
 
 export type SubmitVehicleInputType = {
+  canDrive: Scalars['Boolean']['input'];
+  canStart: Scalars['Boolean']['input'];
   condition: Scalars['String']['input'];
   drivetrain: Scalars['String']['input'];
   engineType: Scalars['String']['input'];
