@@ -1,0 +1,3 @@
+mutation UpdateScrapPrices($updates: UpdateScrapPricesInput!) {
+  updateScrapPrices(updates: $updates)
+}

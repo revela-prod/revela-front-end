@@ -28,6 +28,7 @@ type Documents = {
     "mutation ProvideRange($vehicleId: String!, $tav: Float!, $grade: String!) {\n  provideRange(vehicleId: $vehicleId, tav: $tav, grade: $grade) {\n    id\n    status\n    tav\n    min\n    max\n  }\n}": typeof types.ProvideRangeDocument,
     "mutation RetriggerValuation($vehicleId: String!) {\n  retriggerValuation(vehicleId: $vehicleId)\n}": typeof types.RetriggerValuationDocument,
     "mutation SendOffer($id: String!, $offer: Float!) {\n  sendOffer(id: $id, offer: $offer) {\n    id\n    status\n    offer\n  }\n}": typeof types.SendOfferDocument,
+    "mutation UpdateScrapPrices($updates: UpdateScrapPricesInput!) {\n  updateScrapPrices(updates: $updates)\n}": typeof types.UpdateScrapPricesDocument,
     "mutation initiateRegistration($input: InitiateRegistrationInput!) {\n  initiateRegistration(input: $input)\n}": typeof types.InitiateRegistrationDocument,
     "mutation login($input: LoginInput!) {\n  login(input: $input) {\n    accessToken\n    id\n    email\n    fullName\n    role\n  }\n}": typeof types.LoginDocument,
     "mutation Logout {\n  logout\n}": typeof types.LogoutDocument,
@@ -63,6 +64,7 @@ const documents: Documents = {
     "mutation ProvideRange($vehicleId: String!, $tav: Float!, $grade: String!) {\n  provideRange(vehicleId: $vehicleId, tav: $tav, grade: $grade) {\n    id\n    status\n    tav\n    min\n    max\n  }\n}": types.ProvideRangeDocument,
     "mutation RetriggerValuation($vehicleId: String!) {\n  retriggerValuation(vehicleId: $vehicleId)\n}": types.RetriggerValuationDocument,
     "mutation SendOffer($id: String!, $offer: Float!) {\n  sendOffer(id: $id, offer: $offer) {\n    id\n    status\n    offer\n  }\n}": types.SendOfferDocument,
+    "mutation UpdateScrapPrices($updates: UpdateScrapPricesInput!) {\n  updateScrapPrices(updates: $updates)\n}": types.UpdateScrapPricesDocument,
     "mutation initiateRegistration($input: InitiateRegistrationInput!) {\n  initiateRegistration(input: $input)\n}": types.InitiateRegistrationDocument,
     "mutation login($input: LoginInput!) {\n  login(input: $input) {\n    accessToken\n    id\n    email\n    fullName\n    role\n  }\n}": types.LoginDocument,
     "mutation Logout {\n  logout\n}": types.LogoutDocument,
@@ -154,6 +156,10 @@ export function graphql(source: "mutation RetriggerValuation($vehicleId: String!
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation SendOffer($id: String!, $offer: Float!) {\n  sendOffer(id: $id, offer: $offer) {\n    id\n    status\n    offer\n  }\n}"): (typeof documents)["mutation SendOffer($id: String!, $offer: Float!) {\n  sendOffer(id: $id, offer: $offer) {\n    id\n    status\n    offer\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation UpdateScrapPrices($updates: UpdateScrapPricesInput!) {\n  updateScrapPrices(updates: $updates)\n}"): (typeof documents)["mutation UpdateScrapPrices($updates: UpdateScrapPricesInput!) {\n  updateScrapPrices(updates: $updates)\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

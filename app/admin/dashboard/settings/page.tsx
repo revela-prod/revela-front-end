@@ -140,56 +140,6 @@ export default function AdminProfilePage() {
             </div>
           </div>
 
-          {/* Permissions & Security */}
-          {/* <div className="rounded-3xl border border-[#E7E1D8] bg-white p-6  lg:p-8">
-            <div className="mb-6 flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#6A6A6A]">
-                  Access Control
-                </p>
-                <h3 className="mt-1 text-xl font-extrabold text-[#171D17]">
-                  Permissions & Security
-                </h3>
-              </div>
-              <Button
-                
-                className="h-10 rounded-2xl border-[#E7E1D8] text-xs font-semibold text-[#6A6A6A] hover:text-[#171D17]"
-              >
-                Manage Access
-              </Button>
-            </div>
-
-            <div className="grid gap-3 md:grid-cols-2">
-              {[
-                { label: "User Management", desc: "Create, edit, delete users", active: true },
-                { label: "Financial Reports", desc: "View revenue & analytics", active: true },
-                { label: "System Configuration", desc: "Change platform settings", active: true },
-                { label: "Audit Logs", desc: "View security logs", active: true },
-                { label: "API Access", desc: "Generate & revoke keys", active: false },
-                { label: "Billing Control", desc: "Manage subscriptions", active: true },
-              ].map((perm) => (
-                <div
-                  key={perm.label}
-                  className="flex items-start gap-4 rounded-2xl bg-[#F7F2EB] p-4"
-                >
-                  <div
-                    className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-                      perm.active ? "bg-[#E8A020]" : "bg-[#BFC9C3]"
-                    }`}
-                  >
-                    <CheckCircle2 size={12} className="text-white" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-[#171D17]">
-                      {perm.label}
-                    </p>
-                    <p className="text-xs text-[#6A6A6A]">{perm.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div> */}
-
           {/* Recent Activity */}
           <div className="rounded-3xl border border-[#E7E1D8] bg-white p-6  lg:p-8">
             <div className="mb-6 flex items-center justify-between">

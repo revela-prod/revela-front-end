@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/client/react";
 import { ForgotPasswordDocument } from "@/graphql/generated/graphql";
 import { appToast } from "@/lib/toast";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Mail, Loader2, CheckCircle2, AtSign } from "lucide-react";
+import { ArrowLeft, Mail, AtSign } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { TextField } from "@/components/ui/textfield";
@@ -50,7 +50,7 @@ export default function ForgotPasswordPage() {
   }
 
   // ── Sent state ─────────────────────────────────────────
-  if (sent) {
+  if (!sent) {
     return (
       <div className="flex flex-col items-center text-center gap-6 py-8 font-cabinet">
         <div className="w-20 h-20 rounded-3xl bg-[#FFF7E4] flex items-center justify-center">
@@ -69,9 +69,16 @@ export default function ForgotPasswordPage() {
 
         <div className="w-full bg-[#FFF7E4] border border-[#E8A020]/30 rounded-2xl p-4 space-y-2 text-left">
           <p className="text-xs font-bold text-[#E8A020]">Didn't receive it?</p>
-          <p className="text-xs text-muted-foreground">
-            Check your spam folder. If it's still not there, you can request
-            another link below.
+          <p className="text-sm text-black">
+            Check your{" "}
+            <Link
+              className="underline font-bold"
+              target="_blank"
+              href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#spam"
+            >
+              Spam
+            </Link>{" "}
+            folder. If it's still not there, you can request another link below.
           </p>
           <button
             onClick={() => setSent(false)}
