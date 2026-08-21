@@ -6,6 +6,14 @@ interface Props {
 
 export function VehicleSpecs({ vehicle }: Props) {
 
+  const date = new Date(vehicle.createdAt);
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "medium",
+  timeStyle: "short",
+}).format(date);
+
+
   
   const specs = [
     { label: "Year", value: vehicle.year },
@@ -17,6 +25,7 @@ export function VehicleSpecs({ vehicle }: Props) {
     { label: "Transmission", value: vehicle.transmission ?? "—" },
     { label: "Condition", value: vehicle.condition ?? "—" },
     { label: "Region", value: vehicle.region ?? "—" },
+    { label: "Date", value: formattedDate ?? "—" },
     {
       label: "Scheduled",
       value: vehicle.collectionDate

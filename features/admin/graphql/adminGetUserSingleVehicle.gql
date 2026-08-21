@@ -31,6 +31,8 @@ query AdminGetUserSingleVehicle($vehicleId: String!) {
     region
      reevaluationTav
     reevaluationGrade
+    createdAt
+    updatedAt
     counterOffer
     inspectionReport {
       condition
